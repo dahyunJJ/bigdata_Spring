@@ -9,4 +9,6 @@ public interface SchoolService {
 	
 	public HashMap<String, Object> selectSchoolInfo(int schoolIdx);
 	
+	public int inserSchoolInfo(HashMap<String, Object> paramMap);
+	
 }
