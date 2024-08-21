@@ -29,11 +29,12 @@ public class SchoolServiceImpl extends EgovAbstractServiceImpl implements School
 	}
 
 	@Override
-	public int inserSchoolInfo(HashMap<String, Object> paramMap) {
-		int resultChk = 0;
-		
-		resultChk = schoolDAO.insertSchoolInfo(paramMap);
-		
-		return resultChk;
+	public int inserSchoolInfo(HashMap<String, Object> paramMap) {		
+		return schoolDAO.insertSchoolInfo(paramMap);
+	}
+
+	@Override
+	public int deleteSchoolInfo(HashMap<String, Object> paramMap) {		
+		return schoolDAO.deleteSchoolInfo(paramMap);
 	}
 }

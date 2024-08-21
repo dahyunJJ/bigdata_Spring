@@ -8,17 +8,23 @@
 <title>학교리스트</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
+<script type="text/javascript">	
 	$( document ).ready(function() {
 		  $("#btn_insert").on('click', function(){
 			  fn_insertSchool();
+		  });
+		  
+		  $("#btn_delete").on('click', function(){
+			  fn_deleteSchool();
 		  })
 		});
 	
+		// insert
 		function fn_insertSchool(){
 			
 			var frm = $("#frm").serialize();
-	
+			console.log(frm); // frm의 값은 input의 name
+			
 			$.ajax({
 				type : 'POST',
 				url : '/school/insertSchoolInfo.do',
@@ -30,6 +36,35 @@
 				success : function(data, textStatus, jqXHR){
 					if(data.resultChk > 0){
 						alert("저장되었습니다.");	
+					}
+					
+				},  				
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log("error");
+				},
+				complete : function(jqXHR, textStatus){
+					console.log("complete");
+				}
+			});
+		}
+		
+		// delete	
+		function fn_deleteSchool(){
+			
+			var frm = $("#frm").serialize();
+			console.log(frm); 
+			
+			$.ajax({
+				type : 'POST',
+				url : '/school/deleteSchoolInfo.do',
+				data : frm,
+				dataType : 'json',
+				beforeSend: function(jqXHR, settings){
+					console.log("beforeSend");
+				},
+				success : function(data, textStatus, jqXHR){
+					if(data.resultChk > 0){
+						alert("삭제되었습니다.");	
 					}
 					
 				},  				
@@ -67,5 +102,6 @@
 		</table>
 	</form>
 	<input type="button" id="btn_insert" name="btn_insert" value="저장"/>
+	<input type="button" id="btn_delete" name="btn_delete" value="삭제"/>
 </body>
 </html>

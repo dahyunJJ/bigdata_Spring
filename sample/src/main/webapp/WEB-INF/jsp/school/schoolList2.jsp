@@ -62,8 +62,8 @@
 		<c:forEach var="school" items="${schoolList}">
 			<tr>
 				<!-- [get방식]url?파라미터명=파라미터값&파라미터명1=파라미터값1 -->
-				<!-- <td><a href="/school/getSchoolInfo.do?schoolIdx=${school.schoolId}">${school.schoolName}</a></td> -->
-				<td style="border: 1px solid #444444;"><a href="javascript:fn_detail(${school.schoolId});">${school.schoolName}</a></td>
+				<td><a href="/school/getSchoolInfo.do?schoolIdx=${school.schoolId}">${school.schoolName}</a></td>
+				<!-- <td style="border: 1px solid #444444;"><a href="javascript:fn_detail(${school.schoolId});">${school.schoolName}</a></td> -->
 				<td style="border: 1px solid #444444;">${school.schoolArea}</td>
 				<td style="border: 1px solid #444444;">${school.schoolAddr}</td>
 				<td style="border: 1px solid #444444;">${school.schoolPhone}</td>

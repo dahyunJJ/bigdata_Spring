@@ -19,6 +19,11 @@ public class SchoolDAO extends EgovAbstractMapper{
 	}
 	
 	public int insertSchoolInfo(HashMap<String, Object> paramMap) {
-		return insert("insertSchoolInfo", paramMap);
+		return insert("insertSchoolInfo", paramMap); 
+		// MyBatis : id는 InsertSchoolInfo이고, 파라미터는 paramMap인 insert 태그를 찾아라
+	}
+
+	public int deleteSchoolInfo(HashMap<String, Object> paramMap) {
+		return delete("deleteSchoolInfo", paramMap);
 	}
 }
