@@ -12,9 +12,9 @@
 	$( document ).ready(function() {
 		  $("#btn_insert").on('click', function(){
 			  fn_insertSchool();
-		  });		  
+		  });
 		});
-	
+		
 		function fn_insertSchool(){
 			
 			var frm = $("#frm").serialize();
@@ -41,7 +41,7 @@
 					console.log("complete");
 				}
 			});
-		}		
+		}			
 </script>
 
 </head>
