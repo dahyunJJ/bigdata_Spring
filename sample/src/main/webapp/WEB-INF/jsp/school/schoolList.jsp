@@ -5,21 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학교리스트</title>
+<title>전체 학교 리스트</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">	
 	$( document ).ready(function() {
 		  $("#btn_insert").on('click', function(){
 			  fn_insertSchool();
-		  });
-		  
-		  $("#btn_delete").on('click', function(){
-			  fn_deleteSchool();
-		  })
+		  });		  
 		});
 	
-		// insert
 		function fn_insertSchool(){
 			
 			var frm = $("#frm").serialize();
@@ -46,36 +41,7 @@
 					console.log("complete");
 				}
 			});
-		}
-		
-		// delete	
-		function fn_deleteSchool(){
-			
-			var frm = $("#frm").serialize();
-			console.log(frm); 
-			
-			$.ajax({
-				type : 'POST',
-				url : '/school/deleteSchoolInfo.do',
-				data : frm,
-				dataType : 'json',
-				beforeSend: function(jqXHR, settings){
-					console.log("beforeSend");
-				},
-				success : function(data, textStatus, jqXHR){
-					if(data.resultChk > 0){
-						alert("삭제되었습니다.");	
-					}
-					
-				},  				
-				error: function(jqXHR, textStatus, errorThrown){
-					console.log("error");
-				},
-				complete : function(jqXHR, textStatus){
-					console.log("complete");
-				}
-			});
-		}
+		}		
 </script>
 
 </head>
@@ -102,6 +68,5 @@
 		</table>
 	</form>
 	<input type="button" id="btn_insert" name="btn_insert" value="저장"/>
-	<input type="button" id="btn_delete" name="btn_delete" value="삭제"/>
 </body>
 </html>
