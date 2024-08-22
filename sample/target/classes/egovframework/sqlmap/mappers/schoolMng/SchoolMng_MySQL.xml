@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SchoolMngDAO">
+
+	<select id="selectSchoolMngList" resultType="java.util.HashMap">
+		SELECT  school_id AS schoolId,
+				school_name AS schoolName,
+		        school_area AS schoolArea,
+		        school_addr AS schoolAddr,
+		        school_phone AS schoolPhone
+		FROM tb_school_info
+	</select>
+	
+	<select id="selectSchoolMngInfo" parameterType="int" resultType="java.util.HashMap">
+		SELECT  school_id AS schoolId,
+				school_name AS schoolName,
+		        school_area AS schoolArea,
+		        school_addr AS schoolAddr,
+		        school_phone AS schoolPhone
+		FROM tb_school_info
+		WHERE school_id = #{schoolIdx}
+	</select>
+	
+	<insert id="insertSchoolMngInfo" parameterType="java.util.HashMap">
+		INSERT INTO tb_school_info(
+			school_name,
+		    school_area,
+		    school_addr,
+		    school_phone
+		) VALUES (
+			#{schoolName},
+		    #{schoolArea},
+		    #{schoolAddr},
+		    #{schoolPhone}
+		)
+	</insert>
+	
+	<update id="updateSchoolMngInfo" parameterType="java.util.HashMap">
+		UPDATE tb_school_info
+		SET school_name = COALESCE(NULLIF(#{schoolName}, ''), school_area),
+			school_area = COALESCE(NULLIF(#{schoolArea}, ''), school_area),
+    		school_addr = COALESCE(NULLIF(#{schoolAddr}, ''), school_area),
+    		school_phone = COALESCE(NULLIF(#{schoolPhone}, ''), school_area)
+		WHERE school_id = #{schoolId}
+	</update>
+	
+	<delete id="deleteSchoolMngInfo" parameterType="java.util.HashMap">
+		DELETE FROM tb_school_info
+		WHERE school_id = #{schoolId}
+	</delete>
+	
+
+</mapper>
