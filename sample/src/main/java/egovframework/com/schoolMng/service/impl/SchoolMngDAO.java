@@ -30,6 +30,4 @@ public class SchoolMngDAO extends EgovAbstractMapper{
 		return update("updateSchoolMngInfo", paramMap);
 	}
 
-	
-
 }

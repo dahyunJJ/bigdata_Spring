@@ -35,12 +35,30 @@
 		)
 	</insert>
 	
-	<update id="updateSchoolMngInfo" parameterType="java.util.HashMap">
+	<update id="updateSchoolMngInfo" parameterType="java.util.HashMap">		
+		<!-- UPDATE tb_school_info
+		SET school_name = #{schoolName},
+			school_area = #{schoolArea},
+    		school_addr = #{schoolAddr},
+    		school_phone = #{schoolPhone}
+		WHERE school_id = #{schoolId} -->
+		
 		UPDATE tb_school_info
-		SET school_name = COALESCE(NULLIF(#{schoolName}, ''), school_area),
-			school_area = COALESCE(NULLIF(#{schoolArea}, ''), school_area),
-    		school_addr = COALESCE(NULLIF(#{schoolAddr}, ''), school_area),
-    		school_phone = COALESCE(NULLIF(#{schoolPhone}, ''), school_area)
+		<set>
+			<if test="schoolName != '' and schoolName != null and schoolName != 'undefined'">
+				school_name = #{schoolName},			
+			</if>
+			<if test="schoolArea != '' and schoolArea != null and schoolArea != 'undefined'">
+				school_area = #{schoolArea},		
+			</if>
+			<if test="schoolAddr != '' and schoolAddr != null and schoolAddr != 'undefined'">
+				school_addr = #{schoolAddr},		
+			</if>
+			<if test="schoolPhone != '' and schoolPhone != null and schoolPhone != 'undefined'">
+				school_phone = #{schoolPhone}, 		
+				<!-- myBatis로 동적 처리를 할 경우 마지막 컬럼의 쉼표(,)를 알아서 삭제해줌 -->
+			</if>
+		</set>
 		WHERE school_id = #{schoolId}
 	</update>
 	

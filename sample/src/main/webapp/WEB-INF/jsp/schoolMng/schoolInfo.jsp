@@ -19,10 +19,6 @@
 		$("#btn_delete").on('click', function(){
 			fn_deleteSchool();
 		});
-		
-		$("#btn_update").on('click', function(){
-			fn_updateSchool();
-		});		
 	});
 	
 	function fn_deleteSchool(){
@@ -54,31 +50,10 @@
 		});
 	}
 	
-	function fn_updateSchool() {
-		var frm = $("#frm").serialize();
-		console.log(frm);
-		
-		$.ajax({
-			type : 'POST',
-			url : '/schoolMng/registerSchool.do',
-			data : frm,
-			dataType : 'json',
-			beforeSend: function(jqXHR, settings){
-				console.log("beforeSend");
-			},
-			success : function(data, textStatus, jqXHR){
-				console.log("success");
-				console.log(data);
-				//window.location.href = '/schoolMng/getSchoolList.do';
-				
-			},  				
-			error: function(jqXHR, textStatus, errorThrown){
-				console.log("error");
-			},
-			complete : function(jqXHR, textStatus){
-				console.log("complete");
-			}
-		});
+	function fn_update() {
+		var frm = $("#frm");
+		frm.attr("action", "/schoolMng/registerSchool.do"); // <form id="frm" name="frm" action="/schoolMng/registerSchool.do">
+		frm.submit();
 	}
 </script>
 </head>
@@ -107,7 +82,8 @@
 		
 	</table>
 	<input type="button" id="btn_delete" name="btn_delete" value="삭제"/>	
-	<input type="button" id="btn_udpate" name="btn_udpate" value="수정"/>
+	<input type="button" id="btn_udpate" name="btn_udpate" value="수정" onClick="javascript:fn_update();"/>
+	
 	<a href="/schoolMng/getSchoolList.do">목록으로</a>
 </body>
 </html>

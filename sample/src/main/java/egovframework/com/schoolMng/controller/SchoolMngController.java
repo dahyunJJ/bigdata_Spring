@@ -39,6 +39,24 @@ public class SchoolMngController {
 		return mv;
 	}
 	
+	@RequestMapping("/schoolMng/registerSchool.do")
+	public String registerSchool(@RequestParam HashMap<String, Object> paramMap, Model model) {
+		if(!paramMap.isEmpty()) {
+			// 수정
+			int schoolId = Integer.parseInt(paramMap.get("schoolId").toString());
+			HashMap<String, Object> schoolInfo = schoolMngService.selectSchoolInfo(schoolId);
+			
+			model.addAttribute("schoolInfo", schoolInfo);
+			model.addAttribute("flag", "U");
+		} else {
+			// 등록
+			model.addAttribute("flag", "I");
+			
+		}
+		
+		return "schoolMng/schoolRegister";
+	}
+	
 	// insert
 	@RequestMapping("/schoolMng/insertSchoolInfo.do")
 	public ModelAndView insertSchoolInfo(@RequestParam HashMap<String, Object> paramMap) {
@@ -76,11 +94,5 @@ public class SchoolMngController {
 		mv.addObject("resultChk", resultChk);
 		mv.setViewName("jsonView");
 		return mv;		
-	}
-	
-	@RequestMapping("/schoolMng/registerSchool.do")
-	public String registerSchool() {
-		return "schoolMng/schoolRegister";
-	}
-	
+	}		
 }

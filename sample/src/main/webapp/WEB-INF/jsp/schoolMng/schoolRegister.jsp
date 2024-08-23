@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -17,6 +16,10 @@
 	$(document).ready(function(){
 		$("#btn_insert").on('click', function(){
 			fn_insertSchool();
+		});
+		
+		$("#btn_update").on('click', function(){
+			fn_updateSchool();
 		});
 	});
 	
@@ -47,12 +50,40 @@
 			}
 		});
 	}
+	
+	function fn_updateSchool() {
+		var frm = $("#frm").serialize();
+		console.log(frm);
+		
+		$.ajax({
+			type : 'POST',
+			url : '/schoolMng/updateSchoolInfo.do',
+			data : frm,
+			dataType : 'json',
+			beforeSend: function(jqXHR, settings){
+				console.log("beforeSend");
+			},
+			success : function(data, textStatus, jqXHR){
+				if(data.resultChk > 0){
+					alert("수정되었습니다.");
+					window.location.href = '/schoolMng/getSchoolList.do';
+				}
+				
+			},  				
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log("error");
+			},
+			complete : function(jqXHR, textStatus){
+				console.log("complete");
+			}
+		});
+	}
 		
 </script>
 </head>
 <body>
 	<form id="frm" name="frm">
-		<input type="hidden" id="schoolId" name="schoolId" value="" />
+		<input type="hidden" id="schoolId" name="schoolId" value="${schoolInfo.schoolId}" />
 		<table style="border: 1px solid #444444;">
 			<tr>
 				<th style="border: 1px solid #444444;">학교명</th>
@@ -82,7 +113,13 @@
 			
 		</table>
 	</form>
-	<input type="button" id="btn_insert" name="btn_insert" value="저장"/>
+	
+	<c:if test="${flag == 'I'}">
+		<input type="button" id="btn_insert" name="btn_insert" value="저장"/>
+	</c:if>
+	<c:if test="${flag == 'U'}">
+		<input type="button" id="btn_update" name="btn_update" value="수정"/>
+	</c:if>
 	
 	<a href="/schoolMng/getSchoolList.do">목록으로</a>
 </body>
