@@ -7,4 +7,6 @@ public interface StudentMngService {
 
 	public List<HashMap<String, Object>> selectStudentMngList();
 
+	public HashMap<String, Object> selectStudentMngInfo(int studentId);
+
 }

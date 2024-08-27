@@ -15,4 +15,15 @@
 		ORDER BY rNum DESC
 	</select>
 	
+	<select id="selectStudentMngInfo"  parameterType="int" resultType="java.util.HashMap">
+		SELECT student.student_id AS studentId,
+			   student.student_name AS studentName,
+		       school.school_name AS schoolName,
+		       if(student.student_graduate_yn = 'Y', '졸업', '재학중') AS graduateYN
+		FROM tb_student_info student
+		LEFT JOIN tb_school_info school
+		ON student.school_id = school.school_id
+		WHERE student_id = #{studentId}
+	</select>
+	
 </mapper>

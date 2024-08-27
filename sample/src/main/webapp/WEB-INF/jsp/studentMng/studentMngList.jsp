@@ -31,7 +31,9 @@
 		        	innerHtml += data.list[i].rNum;
 		        	innerHtml += '</td>';
 		        	innerHtml += '<td style="border: 1px solid #444444;">';
+		        	innerHtml += '<a href="javascript:fn_detail('+data.list[i].studentId+')">';
 		        	innerHtml += data.list[i].studentName;
+		        	innerHtml += '</a>';
 		        	innerHtml += '</td>';
 		        	innerHtml += '<td style="border: 1px solid #444444;">';
 		        	innerHtml += data.list[i].schoolName;
@@ -47,10 +49,21 @@
 		    }
 		});
 	}
+	
+	function fn_detail(studentId) {
+		$("#studentId").val(studentId)
+		var frm = $("#frm");
+		frm.attr("method", "POST"); 
+		frm.attr("action", "/studentMng/getStudentMngInfo.do"); 
+		frm.submit();
+	}
 </script>
 
 </head>
 <body>
+	<form id="frm" name="frm">
+		<input type="hidden" id="studentId" name="studentId" value="${studentInfo.studentId}" />
+	</form>
 	<table style="border: 1px solid #444444;">
 	<thead>
 		<tr>
