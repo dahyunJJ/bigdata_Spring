@@ -65,6 +65,8 @@ public class StudentMngController {
 	public ModelAndView registStudentMngInfo(@RequestParam HashMap<String, Object> paramMap) {
 		ModelAndView mv = new ModelAndView();
 		
+		// System.out.println(paramMap.toString());
+		
 		int resultChk = 0;
 		resultChk = studentMngService.registStudentMngInfo(paramMap);
 		
