@@ -52,14 +52,14 @@
 			<tr>
 				<th>학생 이름</th>
 				<td>
-					<input type="text" id="studentName" name="studentName" value="${studentInfo.studentName}"/>
+					<input type="text" id="studentName" name="studentName" value=""/>
 				</td>
 			</tr>
 			<tr>
 				<th>학교명</th>
 				<td>
 					<select id="schoolId" name="schoolId">
-						<option value="${studentInfo.schoolId}">--학교를 선택하세요--</option>
+						<option value="">--학교를 선택하세요--</option>
 						<c:forEach var="schoolList" items="${schoolList}">
 							<option value="${schoolList.schoolId}">${schoolList.schoolName}</option>
 						</c:forEach>
@@ -69,7 +69,7 @@
 			<tr>
 				<th>졸업여부</th>
 				<td>
-					<input type="text" id="graduateYN" name="graduateYN" value="${studentInfo.graduateYN}"/>
+					<input type="text" id="graduateYN" name="graduateYN" value=""/>
 				</td>
 			</tr>
 		</table>
