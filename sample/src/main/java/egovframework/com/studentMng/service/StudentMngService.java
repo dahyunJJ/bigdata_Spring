@@ -9,4 +9,6 @@ public interface StudentMngService {
 
 	public HashMap<String, Object> selectStudentMngInfo(int studentId);
 
+	public int registStudentMngInfo(HashMap<String, Object> paramMap);
+
 }

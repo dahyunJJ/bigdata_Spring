@@ -18,6 +18,8 @@ public class StudentMngDAO extends EgovAbstractMapper{
 		return selectOne("selectStudentMngInfo", studentId);
 	}
 
-	
+	public int registStudentMngInfo(HashMap<String, Object> paramMap) {
+		return insert("registStudentMngInfo", paramMap);
+	}
 
 }

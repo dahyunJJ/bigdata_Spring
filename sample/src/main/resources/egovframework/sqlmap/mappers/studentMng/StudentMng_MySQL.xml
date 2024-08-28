@@ -26,4 +26,16 @@
 		WHERE student_id = #{studentId}
 	</select>
 	
+	<insert id="registStudentMngInfo" parameterType="java.util.HashMap">
+		INSERT INTO tb_student_info (
+			  student_name,
+		      school_id,
+		      student_graduate_yn
+		) VALUES (
+			  #{studentName},
+		      #{schoolId},
+		      #{graduateYN}
+		)
+	</insert>
+	
 </mapper>
